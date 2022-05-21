@@ -26,7 +26,7 @@ func getAppWidth() int {
 }
 
 func uiSeperator() string {
-	grad, _ := gradient.NewGradientBuilder().HtmlColors("#ff1b6b", "#45caff", "#ff1b6b").Domain(0.0, 0.3).Build()
+	grad, _ := gradient.NewGradientBuilder().HtmlColors("#C0FFEE", "#BAD", "#DECAFF").Domain(0.1, 0.3, 0.8).Build()
 	return grad.Apply(strings.Repeat("─", getAppWidth())) + "\n"
 }
 

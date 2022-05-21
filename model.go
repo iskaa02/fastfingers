@@ -18,6 +18,7 @@ type model struct {
 	Start         time.Time
 	End           time.Time
 	Ended         bool
+	GradientValue float64
 }
 
 func initialModel() model {

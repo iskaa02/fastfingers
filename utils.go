@@ -3,6 +3,7 @@ package main
 import (
 	"math"
 	"os"
+	"strings"
 
 	"github.com/iskaa02/qalam/gradient"
 	"github.com/muesli/reflow/indent"
@@ -15,12 +16,22 @@ func generateWords() []string {
 	return parse()
 }
 
-func wrapWords(s string) string {
+func getAppWidth() int {
 	w, _, err := term.GetSize(int(os.Stdout.Fd()))
 	w = int(math.Min(float64(w), 100))
 	if err != nil {
 		w = 60
 	}
+	return w
+}
+
+func uiSeperator() string {
+	grad, _ := gradient.NewGradientBuilder().HtmlColors("#ff1b6b", "#45caff", "#ff1b6b").Domain(0.0, 0.3).Build()
+	return grad.Apply(strings.Repeat("─", getAppWidth())) + "\n"
+}
+
+func wrapWords(s string) string {
+	w := getAppWidth()
 	f := wordwrap.NewWriter(w)
 	f.Write([]byte(s))
 	return f.String()
@@ -40,7 +51,7 @@ func matchString(actual, typed string) bool {
 }
 
 func Layout(body string) string {
-	s := gradient.Vice("b", "i", "u").Apply("Fast Fingers") + "\n\n"
+	s := uiSeperator()
 	s += body
 	s = padding.String(s, 3)
 	s = indent.String(s, 1)

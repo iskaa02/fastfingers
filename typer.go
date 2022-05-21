@@ -14,8 +14,13 @@ func typerUpdate(m *model, msg tea.Msg) (model, tea.Cmd) {
 	switch msg := msg.(type) {
 	case tea.KeyMsg:
 		switch msg.Type {
+
 		case tea.KeyCtrlC:
 			return *m, tea.Quit
+		// ctrl+h maps to ctrl+backspace
+		// use ctrl+backspace to delete whole word
+		case tea.KeyCtrlH:
+			m.CurrentWord = ""
 		case tea.KeyBackspace:
 			if len(m.CurrentWord) >= 1 {
 				m.CurrentWord = m.CurrentWord[:len(m.CurrentWord)-1]
@@ -39,7 +44,8 @@ func typerUpdate(m *model, msg tea.Msg) (model, tea.Cmd) {
 
 func typerView(m model) string {
 	styler := qalam.NewStyler()
-	s := styler.Sprintf("> %s", m.CurrentWord) + "\n\n"
+	s := styler.Sprintf("> %s", m.CurrentWord) + "\n"
+	s += uiSeperator()
 
 	for i, word := range m.Words {
 		if i == m.Index {

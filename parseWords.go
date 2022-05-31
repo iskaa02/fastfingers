@@ -26,7 +26,7 @@ func parseWords() []string {
 	case "english":
 	case "english1000":
 		f = english1000
-	case "english200":
+	case "english2000":
 		f = english2000
 	default:
 		bbcode.Printf("[red]-l flag[/red] should only be one of those values [b red]english english1000 english2000[/b red]\n")

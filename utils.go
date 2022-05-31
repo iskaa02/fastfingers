@@ -5,7 +5,6 @@ import (
 	"os"
 	"strings"
 
-	"github.com/iskaa02/qalam/gradient"
 	"github.com/muesli/reflow/indent"
 	"github.com/muesli/reflow/padding"
 	"github.com/muesli/reflow/wordwrap"
@@ -37,11 +36,6 @@ func getAppWidth() int {
 		w = MIN_WIDHT
 	}
 	return w
-}
-
-func uiSeperator() string {
-	grad, _ := gradient.NewGradientBuilder().HtmlColors("#C0FFEE", "#BAD", "#DECAFF").Domain(0.1, 0.3, 0.8).Build()
-	return grad.Apply(strings.Repeat("─", getAppWidth())) + "\n"
 }
 
 func wrapWords(s string) string {

@@ -44,8 +44,8 @@ func typerUpdate(m *model, msg tea.Msg) (model, tea.Cmd) {
 
 func typerView(m model) string {
 	styler := qalam.NewStyler()
-	s := styler.Sprintf("> %s", m.CurrentWord) + "\n"
-	s += uiSeperator()
+	s := styler.Dim().Sprintf("> %s", m.CurrentWord) + "\n\n"
+	styler.Remove("gray")
 
 	for i, word := range m.Words {
 		if i == m.Index {

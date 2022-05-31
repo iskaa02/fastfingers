@@ -16,10 +16,6 @@ const (
 	MIN_WIDHT  = 100
 )
 
-func generateWords() []string {
-	return parse()
-}
-
 func getAppHeight() int {
 	_, h, err := term.GetSize(int(os.Stdout.Fd()))
 	h = int(math.Min(float64(h), float64(MIN_HEIGHT)))

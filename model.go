@@ -22,7 +22,7 @@ type model struct {
 }
 
 func initialModel() model {
-	words := generateWords()
+	words := parseWords()
 	return model{
 		Words:         words,
 		PreviousWords: make(map[int]bool),
